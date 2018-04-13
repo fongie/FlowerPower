@@ -1,5 +1,11 @@
 import threading
 
+'''
+https://stackoverflow.com/questions/19033818/how-to-call-a-function-on-a-running-python-thread
+
+men ska vi verkligen köra en thread hela tiden?? kanke bättre att först åtminstone låta externalcontroller spawna trådar som kollar alla blommor vid behov i stället
+'''
+
 class Plant(threading.Thread):
 
     def __init__(self, plantID):
