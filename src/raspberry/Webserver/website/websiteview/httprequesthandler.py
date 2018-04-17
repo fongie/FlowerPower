@@ -10,5 +10,4 @@ def showWebsite():
     #testd = f1.fuktvarde()
     wc = WebsiteController()
     testd = wc.getPlants()
-    return render_template('test1.html', testd = '{}'.format(testd))
-    #return '{}'.format(testd)
+    return render_template('index.html', testd = '{}'.format(testd))

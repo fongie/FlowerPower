@@ -1,0 +1,43 @@
+body {
+    font-family: "Comic sans MS";
+    width: 1344px;
+    height: 709px;
+    background-image: url(../images/Bakgrund.jpg);
+    background-size: 100%;
+}
+
+#header {
+    /*background-color: rgb(170, 154, 132);*/
+    width: 1344px;
+    height: 120px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: block;
+}
+
+#content {
+    /*background-color: rgb(219, 195, 163, 0.4);*/
+    width: 1344px;
+    height: 529px;
+    display: block;
+}
+
+h1 {
+    font-size: 40px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding-left: 50%;
+    z-index: 10;
+}
+
+.textspan {
+    color: rgb(0, 0, 0);
+}
+
+#moistvalue {
+    padding-left: 38%;
+    padding-right: 35%;
+    padding-top: 430px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
