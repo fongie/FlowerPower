@@ -4,6 +4,7 @@ import json
 
 class ArduinoConnection:
 	def __init__(self):
+		wlan = WLAN(mode=WLAN.STA)
 		wlan.connect("Isabels iPhone", auth=(net.sec, "ifpejnn09q53y"), timeout=5000)
 
 	def getValue(self):
@@ -11,6 +12,6 @@ class ArduinoConnection:
 		opener = urllib2.build_opener()
 		f = opener.open(req)
 		json = json.loads(f.read())
-		print json
+		print(json)
 		s = json['value']
-		print int(float(s))
+		print(s)

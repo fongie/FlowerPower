@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pytest = "*"
+network = "*"
 
 [requires]
 python_version = "3.5"
