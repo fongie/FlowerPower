@@ -9,15 +9,7 @@ def test_getInstance():
 def test_readPlantStatus():
     excntr = externalscontroller.ExternalsController.getInstance()
     value = excntr.readPlantStatus(1)
-    assert value == 0
-    excntr.terminatePlant(1)
-
-def test_readPlantStatusAgain():
-    excntr = externalscontroller.ExternalsController.getInstance()
-    value1 = excntr.readPlantStatus(1)
-    time.sleep(4)
-    value2 = excntr.readPlantStatus(1)
-    assert value1 == value2
+    assert value > -1
     excntr.terminatePlant(1)
 
 def test_createPlantPutsInDict():
