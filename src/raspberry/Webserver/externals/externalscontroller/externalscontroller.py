@@ -1,7 +1,8 @@
+from raspberry.Webserver.externals.externalmodel import plant
+import threading
 class ExternalsController:
 
     instance = None
-    plants = dict()
 
     @staticmethod
     def getInstance():
@@ -16,17 +17,23 @@ class ExternalsController:
             raise Exception("This class is a singleton!")
         else:
             ExternalsController.instance = self
+            self.plants = dict()
 
-    def readPlantStatus(self, plant):
-        if(plant in plants):
-            p = plants.get(plant)
+    def readPlantStatus(self, newPlant):
+        if(newPlant in self.plants):
+            p = self.plants.get(newPlant)
             return p.getMoistness()
         else:
-            createPlant(plant)
-            p = plants.get(plant)
+            self.createPlant(newPlant)
+            p = self.plants.get(newPlant)
             return p.getMoistness()
 
-    def createPlant(self, plant):
-        p = Plant(plant)
+    def createPlant(self, newPlant):
+        p = plant.Plant(newPlant)
         p.start()
-        plants.d([plant]) = p
+        p.name = "plant" + str(newPlant)
+        self.plants[newPlant] = p
+
+    def terminatePlant(self, oldPlant):
+        p = self.plants.get(oldPlant)
+        p.runSignal = False
