@@ -1,5 +1,4 @@
 #from network import WLAN
-import urllib2
 import json
 import requests
 
@@ -10,9 +9,5 @@ class ArduinoConnection:
 
 	def getValue(self):
 		r = requests.get('https://172.20.10.3/getValues.json')
-		opener = urllib2.build_opener()
-		f = opener.open(req)
-		json = json.loads(f.read())
-		print(json)
-		s = json['value']
-		print(s)
+		print(r.text)
+
