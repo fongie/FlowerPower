@@ -1,5 +1,7 @@
 *.lock
-.pytest_cache
 .DS*
 __pycache__
 Pipfile.lock
+.DS_Store
+.pytest*
+__py*

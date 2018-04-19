@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 pytest = "*"
 flask = "*"
+requests = "*"
 
 [requires]
 python_version = "3.5"
