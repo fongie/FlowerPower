@@ -37,3 +37,4 @@ class ExternalsController:
     def terminatePlant(self, oldPlant):
         p = self.plants.get(oldPlant)
         p.runSignal = False
+        del self.plants[oldPlant]
