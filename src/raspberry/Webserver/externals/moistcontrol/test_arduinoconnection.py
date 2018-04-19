@@ -2,5 +2,6 @@ import pytest
 from .arduinoconnection import ArduinoConnection
 
 def testArduinoConnection():
-	a = ArduinoConnection()
-	assert a.getValue()
+    a = ArduinoConnection()
+    c = a.getValue()
+    assert (c >= 0) and (c < 1025)
