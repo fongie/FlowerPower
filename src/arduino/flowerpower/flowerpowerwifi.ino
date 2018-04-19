@@ -8,8 +8,8 @@ int sensorVCC = 13;
 SoftwareSerial Serial1(6, 7);
 
 // Declare and initialise global arrays for WiFi settings
-char ssid[] = "Isabels iPhone";
-char pass[] = "ifpejnn09q53y";
+char ssid[] = "Xperia Z5 Compact_2634";
+char pass[] = "papegoja";
 
 // Declare and initialise variable for radio status 
 int status = WL_IDLE_STATUS;
@@ -83,9 +83,11 @@ void loop() {
           // Send a standard HTTP response header
           client.print(
             "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/html\r\n"
+            "Content-Type: text/plain\r\n"
             "Connection: close\r\n"
             "\r\n");
+          client.print(stringSensorValue);
+          /*
           client.print("<!DOCTYPE HTML>\r\n");
           client.print("<html>\r\n");
           client.print("<head>\r\n");
@@ -97,6 +99,7 @@ void loop() {
           client.print("</body>\r\n");
           client.print("</html>\r\n");
           break;
+          */
         }
         if (c == '\n') {
           // you're starting a new line
