@@ -83,23 +83,11 @@ void loop() {
           // Send a standard HTTP response header
           client.print(
             "HTTP/1.1 200 OK\r\n"
-            "Content-Type: text/plain\r\n"
+            "Content-Type: text/html\r\n"
             "Connection: close\r\n"
             "\r\n");
           client.print(stringSensorValue);
-          /*
-          client.print("<!DOCTYPE HTML>\r\n");
-          client.print("<html>\r\n");
-          client.print("<head>\r\n");
-          client.print("<title>Sensor Value</title>\r\n");
-          client.print("</head>\r\n");
-          client.print("<body>\r\n");
-          client.print("<h1>Hello World!</h1>\r\n");
-          client.print("<p>"+ stringSensorValue + "</p>\r\n");
-          client.print("</body>\r\n");
-          client.print("</html>\r\n");
           break;
-          */
         }
         if (c == '\n') {
           // you're starting a new line

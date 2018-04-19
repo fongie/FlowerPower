@@ -3,4 +3,4 @@ from raspberry.Webserver.website.websitecontroller.websitecontroller import Webs
 
 def test_getPlants():
     wc = WebsiteController()
-    assert wc.getPlants() > 0
+    assert wc.getPlants() >= 0
