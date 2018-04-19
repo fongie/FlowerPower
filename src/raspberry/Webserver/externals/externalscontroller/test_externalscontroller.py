@@ -1,5 +1,5 @@
 from raspberry.Webserver.externals.externalscontroller import externalscontroller
-import pytest, time, threading
+import pytest, threading
 
 def test_getInstance():
     excntr1 = externalscontroller.ExternalsController.getInstance()
@@ -9,7 +9,7 @@ def test_getInstance():
 def test_readPlantStatus():
     excntr = externalscontroller.ExternalsController.getInstance()
     value = excntr.readPlantStatus(1)
-    assert value > -1
+    assert value > -1 and value < 1025
     excntr.terminatePlant(1)
 
 def test_createPlantPutsInDict():
@@ -33,12 +33,7 @@ def test_createPlantCreatesProcess():
 def test_terminatePlant():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(4)
+    p1 = threading.active_count()
     excntr.terminatePlant(4)
-    time.sleep(10)
-    threads = threading.enumerate()
-    testPassed = True
-    for p in threads:
-        if p.name == "plant" + str(4):
-            testPassed = False
-
-    assert testPassed
+    p2 = threading.active_count()
+    assert p1 == p2 + 1
