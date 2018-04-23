@@ -1,6 +1,18 @@
 import pytest, threading, time
 from .plant import Plant
 
+# note these tests are integration tests, they work if tellstick and arduino are connected
+
+def test_wateringPlant():
+    p = Plant(1,3)
+    p.start()
+    time.sleep(1)
+    res = p.waterPlant()
+    time.sleep(1)
+    p.runSignal = False
+
+    assert threading.active_count() == 1
+
 def test_getMoistnessFromArduino():
     p = Plant(1)
     p.updateMinDryness()
