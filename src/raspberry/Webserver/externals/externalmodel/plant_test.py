@@ -33,6 +33,11 @@ def test_getMoistnessFromArduinoAsThread():
     time.sleep(7.5)
     assert r.isAlive() == False
 
+def test_sendNotificationFromPlant():
+    p = Plant(1,3, "flowerpowerkth@gmail.com")
+    p.lastMoistReading = 500
+    p.updateMinDryness()
+
 """
 WAIT UNTIL TESTING FOR SEVERAL PLANTS
 def test_startAndStopAsThread():

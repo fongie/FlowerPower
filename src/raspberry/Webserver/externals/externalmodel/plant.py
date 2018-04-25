@@ -1,6 +1,7 @@
 import threading, time, requests
 from raspberry.Webserver.externals.moistcontrol.arduinoconnection import ArduinoConnection
 from raspberry.Webserver.externals.irrigation.tellstickhandler import TellstickHandler
+from raspberry.Webserver.externals.notification.notificationsender import NotificationSender
 
 '''
 The Plant class symbolizes a Plant in the system. It handles all communication with the external hardware connected with the plant, such as the moist-sensoring Arduino, and the Tellstick Duo for irrigation.
@@ -20,14 +21,18 @@ class Plant(threading.Thread):
 
         self.noContactWithArduinoCounter = 0
         self.lastMoistReading = -1
+        self.drynessTrigger = 1000
         self.plantID = args[0]
+
+        self.didNotSendNotificationYet = True
+
         if len(args) > 1:
             self.wateringTime = args[1]
             if len(args) > 2:
-                self.notificationSender = NotificationSender(args[2])
+                self.notificationSender = NotificationSender(self.plantID, args[2])
         else:
             self.wateringTime = 3
-            self.notificationSender = ""
+            self.notificationSender = NotificationSender(self.plantID, "flowerpowerkth@gmail.com") #default, change?
 
         self.arduinoConnection = ArduinoConnection()
         self.tellstickHandler = TellstickHandler()
@@ -48,19 +53,23 @@ class Plant(threading.Thread):
             self.runSignal = False
             raise ValueError('Could not get an updated value from the Arduino moistsensor!')
 
-    def abortWatering(self):
-        pass
+    ''' Set below which value the low moistness notification is sent '''
+    def setDrynessTrigger(self, value):
+        self.drynessTrigger = value
 
     ''' Updates current moist value with a new moist reading from the Arduino '''
     def updateMinDryness(self):
+
+        if (0 <= self.lastMoistReading < self.drynessTrigger) and self.didNotSendNotificationYet:
+            self.notificationSender.sendDrynessNotification(self.lastMoistReading)
+            self.didNotSendNotificationYet = False
+
         try:
             self.lastMoistReading = self.arduinoConnection.readValue()
         except requests.ConnectionError:
             self.noContactWithArduinoCounter += 1
             if self.noContactWithArduinoCounter > 5: # if we tried too many times to reach arduino and couldnt, we dont have a value
                 self.lastMoistReading = -1
-                return
-
 
     ''' Water the plant by turning on the pump, keeping it on for self.wateringTime seconds, and turning it off. Raises AssertionError if turning on or turning off was unsuccessful. '''
     def waterPlant(self):
@@ -72,3 +81,6 @@ class Plant(threading.Thread):
         if not off:
             raise AssertionError('WARNING Water pump was turned on but not turned off!')
         return
+
+    def abortWatering(self):
+        pass
