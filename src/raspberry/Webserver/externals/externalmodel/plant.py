@@ -13,7 +13,8 @@ class Plant(threading.Thread):
     ''' Constructor for Plant.
     Params:
         plantID (int), an int identifier.
-        wateringTime (int), how long pump is turned on each watering'''
+        wateringTime (int), how long pump is turned on each watering
+        emailToNotify (str), where to send notifications'''
     def __init__(self, *args):
         threading.Thread.__init__(self)
 
@@ -22,8 +23,11 @@ class Plant(threading.Thread):
         self.plantID = args[0]
         if len(args) > 1:
             self.wateringTime = args[1]
+            if len(args) > 2:
+                self.notificationSender = NotificationSender(args[2])
         else:
             self.wateringTime = 3
+            self.notificationSender = ""
 
         self.arduinoConnection = ArduinoConnection()
         self.tellstickHandler = TellstickHandler()
