@@ -57,10 +57,17 @@ def test_turnOffSprinkler():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(6)
 
+    try:
+        excntr.waterPlant(6)
+        excntr.turnOffSprinkler(6)
+        turnedOn = excntr.plants.get(6).tellstickHandler.isTurnedOn
+        noException = True
+    except:
+        noException = False
 
 
     excntr.terminatePlant(6)
-    assert False
+    assert noException and turnedOn == False
 """
 
 def test_updateMinDryness():
@@ -69,28 +76,31 @@ def test_updateMinDryness():
 
     testPassed = False
     newValue = 500
-    excntr.updateMinDryness(7, newValue)
-    if excntr.plants.get(7).minDryness == newValue:
+    excntr.setDrynessTrigger(7, newValue)
+    if excntr.plants.get(7).drynessTrigger == newValue:
         testPassed = True
 
     excntr.terminatePlant(7)
     assert testPassed
 
+"""
 def test_setEmailForPlant():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(8)
 
-    excntr.setEmailForPlant(8, "hampus.p.f@gmail.com")
-    
+    newEmail = "hampus.p.f@gmail.com"
+    excntr.setEmailForPlant(8, newEmail)
+    email = excntr.plants.get(8).notificationSender.sendToEmail
 
     excntr.terminatePlant(8)
-    assert False
+    assert newEmail == email
+"""
 
 def test_isActive():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(9)
 
-
+    shouldBeActive = excntr.isActive(9)
 
     excntr.terminatePlant(9)
-    assert False
+    assert shouldBeActive
