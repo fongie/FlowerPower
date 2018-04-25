@@ -1,4 +1,4 @@
-import tellcore.telldus
+import tellcore.telldus, time
 #import tellcore.constants
 
 '''
@@ -17,6 +17,8 @@ class TellstickHandler:
         if not self.isTurnedOn:
             try:
                 self.pump.turn_on()
+                time.sleep(0.5)
+                self.pump.turn_on() # sometimes the switch doesnt recognize the first call
                 self.isTurnedOn = True
                 return True
             except:

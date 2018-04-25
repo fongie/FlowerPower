@@ -1,4 +1,4 @@
-import threading, time
+import threading, time, requests
 from raspberry.Webserver.externals.moistcontrol.arduinoconnection import ArduinoConnection
 from raspberry.Webserver.externals.irrigation.tellstickhandler import TellstickHandler
 
@@ -17,7 +17,8 @@ class Plant(threading.Thread):
     def __init__(self, *args):
         threading.Thread.__init__(self)
 
-        self.lastMoistReading = 0
+        self.noContactWithArduinoCounter = 0
+        self.lastMoistReading = -1
         self.plantID = args[0]
         if len(args) > 1:
             self.wateringTime = args[1]
@@ -37,14 +38,25 @@ class Plant(threading.Thread):
 
     ''' Get the last moist reading from the Arduino connection to this plant '''
     def getMoistness(self):
-        return self.lastMoistReading
+        if self.lastMoistReading >= 0:
+            return self.lastMoistReading
+        else:
+            self.runSignal = False
+            raise ValueError('Could not get an updated value from the Arduino moistsensor!')
 
     def abortWatering(self):
         pass
 
-    ''' Update with a new moist reading from the Arduino '''
+    ''' Updates current moist value with a new moist reading from the Arduino '''
     def updateMinDryness(self):
-        self.lastMoistReading = self.arduinoConnection.readValue()
+        try:
+            self.lastMoistReading = self.arduinoConnection.readValue()
+        except requests.ConnectionError:
+            self.noContactWithArduinoCounter += 1
+            if self.noContactWithArduinoCounter > 5: # if we tried too many times to reach arduino and couldnt, we dont have a value
+                self.lastMoistReading = -1
+                return
+
 
     ''' Water the plant by turning on the pump, keeping it on for self.wateringTime seconds, and turning it off. Raises AssertionError if turning on or turning off was unsuccessful. '''
     def waterPlant(self):
