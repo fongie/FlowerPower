@@ -39,3 +39,18 @@ class ExternalsController:
         p.runSignal = False
         p.join()
         del self.plants[oldPlant]
+
+    def waterPlant(self, plantID):
+        pass
+
+    def turnOffSprinkler(self, plantID):
+        pass
+
+    def updateMinDryness(self, plantID, minDryness):
+        pass
+
+    def setEmailForPlant(self, plantID, userEmail):
+        pass
+
+    def isActive(self, plantID):
+        pass
