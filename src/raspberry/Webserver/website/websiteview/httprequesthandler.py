@@ -4,23 +4,19 @@ from raspberry.Webserver.website.websitecontroller.websitecontroller import Webs
 app = Flask(__name__)
 wc = WebsiteController()
 
-@app.route('/') #alternativt "GET", "POST"
+@app.route('/')
 def showWebsite():
-    #testdata = ["123", "456", "789"]
-    #testd = f1.fuktvarde()
-    #wc = WebsiteController()
-    testd = wc.getPlants()
-    return render_template('index.html', testd = '{}'.format(testd))
+    moistValue = wc.getPlants()
+    return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/', methods=['GET', 'POST'])
-def doLogin():
-    #wc = WebsiteController()
+def buttonHandler():
     if request.method == 'POST':
         if "loginButton" in request.form:
             uname = request.form['username']
             pwd = request.form['password']
-            testi = wc.login(uname, pwd)
-            return render_template('loggedIn.html', testi = '{}'.format(testi))
+            result = wc.login(uname, pwd)
+            return render_template('loggedIn.html', result = '{}'.format(result))
         elif "wateringButton" in request.form:
             testi = 'vatten knappen tryckt'
             return render_template('loggedIn.html', testi = '{}'.format(testi))
@@ -28,4 +24,4 @@ def doLogin():
     #return render_template('index.html', testd = '{}'.format(testd))
 
 
-# EXPORT FLASK_APP=httprequesthandler.py
+# export FLASK_APP=httprequesthandler.py
