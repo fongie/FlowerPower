@@ -8,20 +8,29 @@ def test_getInstance():
 
 def test_readPlantStatus():
     excntr = externalscontroller.ExternalsController.getInstance()
-    value = excntr.readPlantStatus(1)
+
+    try:
+        value = excntr.readPlantStatus(1)
+        noError = True
+    except:
+        noError = False
+
     excntr.terminatePlant(1)
-    assert value > -1 and value < 1025
+    assert value > -1 and value < 1025 and noError
 
 def test_createPlantPutsInDict():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(2)
+
     p = excntr.plants.get(2)
+
     excntr.terminatePlant(2)
     assert p
 
 def test_createPlantCreatesProcess():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(3)
+
     threads = threading.enumerate()
     testPassed = False
     for p in threads:
@@ -34,9 +43,11 @@ def test_createPlantCreatesProcess():
 def test_terminatePlant():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(4)
+
     p1 = threading.active_count()
     excntr.terminatePlant(4)
     p2 = threading.active_count()
+
     assert p1 == p2 + 1
 
 def test_waterPlant():
@@ -76,7 +87,7 @@ def test_updateMinDryness():
 
     testPassed = False
     newValue = 500
-    excntr.setDrynessTrigger(7, newValue)
+    excntr.updateMinDryness(7, newValue)
     if excntr.plants.get(7).drynessTrigger == newValue:
         testPassed = True
 

@@ -20,13 +20,15 @@ class ExternalsController:
             self.plants = dict()
 
     def readPlantStatus(self, newPlant):
-        if(newPlant in self.plants):
-            p = self.plants.get(newPlant)
-            return p.getMoistness()
-        else:
+        if(newPlant not in self.plants):
             self.createPlant(newPlant)
-            p = self.plants.get(newPlant)
-            return p.getMoistness()
+
+        p = self.plants.get(newPlant)
+        try:
+            moistness = p.getMoistness()
+        except:
+            raise RuntimeError('Could not get value from plant')
+        return moistness
 
     def createPlant(self, newPlant):
         p = plant.Plant(newPlant)
@@ -41,16 +43,26 @@ class ExternalsController:
         del self.plants[oldPlant]
 
     def waterPlant(self, plantID):
-        pass
+        try:
+            self.plants.get(plantID).waterPlant()
+        except:
+            raise RuntimeError('Could not start watering')
 
     def turnOffSprinkler(self, plantID):
-        pass
+        try:
+            self.plants.get(plantID).abortWatering()
+        except:
+            raise RuntimeError('Could not turn off watering')
 
     def updateMinDryness(self, plantID, minDryness):
-        pass
+        self.plants.get(plantID).setDrynessTrigger(minDryness)
 
     def setEmailForPlant(self, plantID, userEmail):
         pass
 
     def isActive(self, plantID):
-        pass
+        if plantID not in self.plants:
+            running = False
+        else:
+            running = self.plants.get(plantID).isAlive()
+        return running
