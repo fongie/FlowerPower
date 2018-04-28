@@ -1,0 +1,13 @@
+#ram {
+    font-family: "Comic sans MS";
+    width: 1344px;
+    height: 482px;
+}
+
+#moistvalue {
+    padding-left: 38%;
+    padding-right: 35%;
+    padding-top: 430px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}

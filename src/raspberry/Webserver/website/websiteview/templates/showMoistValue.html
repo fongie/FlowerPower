@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/showMoistValue.css') }}">
+{% endblock %}
+{% block content %}
+
+        <div id="ram">
+            <div id="moistvalue">
+                <span class="textspan">Blommans fuktvärde är: {{ testd }}</span>
+            </div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+#ram {
+    font-family: "Comic sans MS";
+    width: 1344px;
+    height: 482px;
+}
+
+#logIn {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 504px;
+    height: 163px;
+    margin: 31px 65.5px 31px 737.5px;
+    border-radius: 8px;
+}
+
+.rubrik {
+    width: 484px;
+    padding: 5px 10px 5px 10px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+/*
+#description{
+    font-size: 18px;
+    width: 168px;
+    height: 92px;
+    margin: 5px 10px 5px 10px;
+}
+
+#data{
+    width: 302px;
+    height: 92px;
+    margin: 5px 10px 5px 0px;
+    border-radius: 8px;
+}
+*/
+
+label{
+    font-size: 18px;
+    width: 168px;
+    height: 40px;
+    margin: 5px 10px 5px 10px;
+}
+
+label.b{
+    width: 168px;
+}
+
+input{
+    width: 302px;
+    height: 30px;
+    margin: 5px 10px 5px 0px;
+    border-radius: 8px;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    margin: 5px 10px 5px 394px;
+    border-radius: 8px;
+}
