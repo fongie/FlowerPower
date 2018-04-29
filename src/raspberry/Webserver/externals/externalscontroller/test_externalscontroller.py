@@ -49,7 +49,7 @@ def test_terminatePlant():
     p2 = threading.active_count()
 
     assert p1 == p2 + 1
-"""
+
 def test_waterPlant():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(5)
@@ -62,8 +62,7 @@ def test_waterPlant():
 
     excntr.terminatePlant(5)
     assert managedToWaterWithoutProblem
-"""
-"""
+
 def test_turnOffSprinkler():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(6)
@@ -79,7 +78,6 @@ def test_turnOffSprinkler():
 
     excntr.terminatePlant(6)
     assert noException and turnedOn == False
-"""
 
 def test_updateMinDryness():
     excntr = externalscontroller.ExternalsController.getInstance()
@@ -94,7 +92,6 @@ def test_updateMinDryness():
     excntr.terminatePlant(7)
     assert testPassed
 
-"""
 def test_setEmailForPlant():
     excntr = externalscontroller.ExternalsController.getInstance()
     excntr.createPlant(8)
@@ -105,7 +102,6 @@ def test_setEmailForPlant():
 
     excntr.terminatePlant(8)
     assert newEmail == email
-"""
 
 def test_isActive():
     excntr = externalscontroller.ExternalsController.getInstance()
