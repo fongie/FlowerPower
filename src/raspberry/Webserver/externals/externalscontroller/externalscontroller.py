@@ -31,16 +31,18 @@ class ExternalsController:
         return moistness
 
     def createPlant(self, newPlant):
-        p = plant.Plant(newPlant)
-        p.start()
-        p.name = "plant" + str(newPlant)
-        self.plants[newPlant] = p
+        if(newPlant not in self.plants):
+            p = plant.Plant(newPlant)
+            p.start()
+            p.name = "plant" + str(newPlant)
+            self.plants[newPlant] = p
 
     def terminatePlant(self, oldPlant):
-        p = self.plants.get(oldPlant)
-        p.runSignal = False
-        p.join()
-        del self.plants[oldPlant]
+        if(newPlant in self.plants):
+            p = self.plants.get(oldPlant)
+            p.runSignal = False
+            p.join()
+            del self.plants[oldPlant]
 
     def waterPlant(self, plantID):
         try:
@@ -55,7 +57,8 @@ class ExternalsController:
             raise RuntimeError('Could not turn off watering')
 
     def updateMinDryness(self, plantID, minDryness):
-        self.plants.get(plantID).setDrynessTrigger(minDryness)
+        if(newPlant in self.plants):
+            self.plants.get(plantID).setDrynessTrigger(minDryness)
 
     def setEmailForPlant(self, plantID, userEmail):
         pass
