@@ -20,6 +20,10 @@ def buttonHandler():
         elif "wateringButton" in request.form:
             testi = 'vatten knappen tryckt'
             return render_template('loggedIn.html', testi = '{}'.format(testi))
+        elif "setMinDryness" in request.form:
+            minDryness = request.form['setMinDryness']
+            result2 = wc.setMinDryness(minDryness)
+            return render_template('loggedIn.html', result2 = '{}'.format(result2))
     
     #return render_template('index.html', testd = '{}'.format(testd))
 
