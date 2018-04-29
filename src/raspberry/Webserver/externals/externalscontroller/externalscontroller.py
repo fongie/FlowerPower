@@ -46,7 +46,7 @@ class ExternalsController:
         self.plants[plantID] = newPlant
 
     def terminatePlant(self, oldPlant):
-        if(newPlant in self.plants):
+        if(oldPlant in self.plants):
             p = self.plants.get(oldPlant)
             p.runSignal = False
             p.join()
