@@ -9,6 +9,7 @@ def test_getInstance():
 def test_readPlantStatus():
     excntr = externalscontroller.ExternalsController.getInstance()
 
+    value = 1337
     try:
         value = excntr.readPlantStatus(1)
         noError = True
