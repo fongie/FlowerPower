@@ -42,7 +42,7 @@ class ExternalsController:
 
     def startAndPutInDict(self, newPlant, plantID):
         newPlant.start()
-        newPlant.name = "plant" + str(plantID)
+        newPlant.name = 'plant' + str(plantID)
         self.plants[plantID] = newPlant
 
     def terminatePlant(self, oldPlant):

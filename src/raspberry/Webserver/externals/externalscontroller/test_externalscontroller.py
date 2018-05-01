@@ -35,7 +35,7 @@ def test_createPlantCreatesProcess():
     threads = threading.enumerate()
     testPassed = False
     for p in threads:
-        if p.name == "plant" + str(3):
+        if p.name == 'plant' + str(3):
             testPassed = True
 
     excntr.terminatePlant(3)
