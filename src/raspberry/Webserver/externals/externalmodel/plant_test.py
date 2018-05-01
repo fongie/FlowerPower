@@ -10,7 +10,7 @@ def test_wateringPlant():
         print('cannot water')
     time.sleep(1)
     p.runSignal = False
-    time.sleep(2)
+    time.sleep(8) # here needs to be able to wait for arduinoconnectoins error, right now timeing out at 5, or thread stays alive
     assert p.isAlive() == False
 
 
