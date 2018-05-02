@@ -1,7 +1,7 @@
 from raspberry.Webserver.externals.externalscontroller.externalscontroller import ExternalsController
 from raspberry.Webserver.website.websitemodel.useraccounthandler import UserAccountHandler
 
-ec = ExternalsController.getInstance()
+#ec = ExternalsController.getInstance()
 
 class WebsiteController:
     def __init__(self):
