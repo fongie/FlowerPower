@@ -7,7 +7,7 @@ class ArduinoConnection:
 
         def readValue(self):
             try:
-                r = requests.get('http://192.168.43.160/', timeout=5)
+                r = requests.get('http://192.168.43.172/', timeout=5)
             except:
                 raise requests.ConnectionError("Server did not return status code 200")
             return int(r.text)
