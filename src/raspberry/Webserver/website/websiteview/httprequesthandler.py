@@ -24,12 +24,12 @@ def buttonHandler():
             result2 = wc.setMinDryness(minDryness)
             return render_template('loggedIn.html', result2 = '{}'.format(result2))'''
         
-@app.route('/showLogin')
+@app.route('/login')
 def showLogin():
     return render_template('login.html')
 
 @app.route('/login', methods=['GET', 'POST'])
-    def login():
+def login():
     if request.method == 'POST':
         if "loginButton" in request.form:
             uname = request.form['username']
@@ -43,14 +43,15 @@ def showMoistValue():
     moistValue = wc.getPlants()
     return render_template('showMoistValue.html', moistValue = '{}'.format(moistValue))
 
-@app.route('/insertMoistValueSensitivityPage')
+@app.route('/insertMoistValueSensitivity')
 def insertMoistValueSensitivityPage():
     return render_template('insertmoistvaluesensitivity.html')
 
 @app.route('/insertMoistValueSensitivity', methods=['GET', 'POST'])
+def insertMoistValueSensitivity():
     if request.method == 'POST':
-        if "setMinDryness" in request.form:
-            minDryness = request.form['setMinDryness']
+        if "moistValueSensitivityNumberOk" in request.form:
+            minDryness = request.form['moistValueSensitivityNumber']
             result2 = wc.setMinDryness(minDryness)
             return render_template('insertmoistvaluesensitivity.html', result2 = '{}'.format(result2))
 
