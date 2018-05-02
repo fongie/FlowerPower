@@ -12,12 +12,11 @@ def test_readPlantStatus():
     value = 1337
     try:
         value = excntr.readPlantStatus(1)
-        noError = True
     except RuntimeError:
-        noError = False
+        value = 666
 
     excntr.terminatePlant(1)
-    assert value > -1 and value < 1025 and noError
+    assert value > -1 and value < 1025
 
 def test_createPlantPutsInDict():
     excntr = externalscontroller.ExternalsController.getInstance()
