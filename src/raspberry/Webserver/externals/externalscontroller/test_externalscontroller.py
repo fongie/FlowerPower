@@ -13,7 +13,7 @@ def test_readPlantStatus():
     try:
         value = excntr.readPlantStatus(1)
         noError = True
-    except:
+    except RuntimeError:
         noError = False
 
     excntr.terminatePlant(1)
@@ -58,7 +58,7 @@ def test_waterPlant():
     try:
         excntr.waterPlant(5)
         managedToWaterWithoutProblem = True
-    except AssertionError:
+    except RuntimeError:
         managedToWaterWithoutProblem = False
 
     excntr.terminatePlant(5)
@@ -73,7 +73,7 @@ def test_turnOffSprinkler():
         excntr.turnOffSprinkler(6)
         turnedOn = excntr.plants.get(6).tellstickHandler.isTurnedOn
         noException = True
-    except:
+    except RuntimeError:
         noException = False
 
 
@@ -99,7 +99,7 @@ def test_setEmailForPlant():
 
     newEmail = "hampus.p.f@gmail.com"
     excntr.setEmailForPlant(8, newEmail)
-    email = excntr.plants.get(8).notificationSender.sendToEmail
+    email = excntr.plants.get(8).notificationSender.to_addr
 
     excntr.terminatePlant(8)
     assert newEmail == email
