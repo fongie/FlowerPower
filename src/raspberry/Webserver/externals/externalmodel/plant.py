@@ -83,5 +83,9 @@ class Plant(threading.Thread):
             raise AssertionError('WARNING Water pump was turned on but not turned off!')
         return
 
+    def setEmail(self,userEmail):
+        if hasattr(self, 'notificationSender'):
+            self.notificationSender.setEmail(userEmail)
+
     def abortWatering(self):
         pass
