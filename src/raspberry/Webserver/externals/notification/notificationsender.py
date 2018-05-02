@@ -35,6 +35,9 @@ class NotificationSender:
         self._send_email(subj,body)
         return True
 
+    def setEmail(self,email):
+        self.to_addr = email
+
     def _send_email(self, subject, body):
         msg = MIMEMultipart()
         msg['From'] = self.username
