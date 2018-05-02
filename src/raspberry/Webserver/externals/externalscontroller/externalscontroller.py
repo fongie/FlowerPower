@@ -55,22 +55,22 @@ class ExternalsController:
     def waterPlant(self, plantID):
         try:
             self.plants.get(plantID).waterPlant()
-        except:
+        except AssertionError:
             raise RuntimeError('Could not start watering')
 
     def turnOffSprinkler(self, plantID):
         try:
             self.plants.get(plantID).abortWatering()
-        except:
+        except AssertionError:
             raise RuntimeError('Could not turn off watering')
 
     def updateMinDryness(self, plantID, minDryness):
-        if(newPlant in self.plants):
+        if(plantID in self.plants):
             self.plants.get(plantID).setDrynessTrigger(minDryness)
 
     def setEmailForPlant(self, plantID, userEmail):
-        self.terminatePlant(plantID)
-        self.createPlantWithEmail(plantID, userEmail)
+        p = self.plants.get(plantID)
+        p.setEmail(userEmail)
 
     def isActive(self, plantID):
         if plantID not in self.plants:
