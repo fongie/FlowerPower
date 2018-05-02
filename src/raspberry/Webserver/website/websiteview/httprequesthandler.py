@@ -35,13 +35,23 @@ def login():
             uname = request.form['username']
             pwd = request.form['password']
             result = wc.login(uname, pwd)
-            return render_template('showMoistValue.html', result = '{}'.format(result))
+            return render_template('indexWhenLoggedIn.html', result = '{}'.format(result))
+
+@app.route('/logOut')
+def logOut():
+    return render_template('index.html')
     
-@app.route('/showMoistValue')
-def showMoistValue():
+@app.route('/homepageloggedin')
+def homepageloggedin():
     wc = WebsiteController()
     moistValue = wc.getPlants()
-    return render_template('showMoistValue.html', moistValue = '{}'.format(moistValue))
+    return render_template('indexWhenLoggedIn.html', moistValue = '{}'.format(moistValue))
+
+@app.route('/homepage')
+def homepage():
+    wc = WebsiteController()
+    moistValue = wc.getPlants()
+    return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/insertMoistValueSensitivity')
 def insertMoistValueSensitivityPage():
