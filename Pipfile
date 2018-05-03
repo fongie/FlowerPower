@@ -8,6 +8,7 @@ pytest = "*"
 flask = "*"
 requests = "*"
 tellcore-py = "*"
+mysql-connector = "*"
 
 [requires]
 python_version = "3.5"

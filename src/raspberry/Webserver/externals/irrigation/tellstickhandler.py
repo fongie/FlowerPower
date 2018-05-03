@@ -1,9 +1,9 @@
 import tellcore.telldus, time
 
-'''
-Handles all interactions with the Tellstick system controlling the water pump
-'''
 class TellstickHandler:
+    '''
+    Handles all interactions with the Tellstick system controlling the water pump
+    '''
     DEVICE_NAME = "Pump"
 
     ''' Constructor. No parameters '''
@@ -13,8 +13,8 @@ class TellstickHandler:
         self.pump = self._findDevice()
         self.isTurnedOn = False
 
-    ''' Turns on the tellstick '''
     def turnOn(self):
+        ''' Turns on the tellstick '''
         if not self.isTurnedOn:
             try:
                 self.pump.turn_on()
@@ -27,8 +27,8 @@ class TellstickHandler:
         else:
             raise AssertionError('Tried to turn on pump that was already on!')
 
-    ''' Turns off the tellstick '''
     def turnOff(self):
+        ''' Turns off the tellstick '''
         if self.isTurnedOn:
             try:
                 self.pump.turn_off()
