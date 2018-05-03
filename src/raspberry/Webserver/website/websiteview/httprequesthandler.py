@@ -54,7 +54,8 @@ def logOut():
 
 @app.route('/waterplant')
 def waterPlant():
-    username = session['username']
+    #username = session['username']
+    username = "Nicole"
     moistValue = wc.getPlants()
     return render_template('waterPlant.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
 

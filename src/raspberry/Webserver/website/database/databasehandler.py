@@ -37,7 +37,7 @@ class DatabaseHandler:
     
     def databaseConnection(self):
         try:
-            cnx = mysql.connector.connect(user='root', password='banan123.', host='127.0.0.1', database='test')
+            cnx = mysql.connector.connect(user='projectgaming', password='banan123.', host='127.0.0.1', database='flowerpower')
             
         except:
             cnx = 'Could not connect to database.'
