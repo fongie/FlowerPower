@@ -38,26 +38,30 @@ def login():
             uname = request.form['username']
             pwd = request.form['password']
             result = wc.login(uname, pwd)
+            moistValue = wc.getPlants()
             if result == uname:
+                session['logged_in'] = True
                 session['username'] = uname
                 username = session['username']
+                return render_template('indexWhenLoggedIn.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
             else:
                 username = result
-            
-            moistValue = wc.getPlants()
-            return render_template('indexWhenLoggedIn.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+                return render_template('logIn.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/logOut')
 def logOut():
     moistValue = wc.getPlants()
+    session['logged_in'] = False
     return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/waterplant')
 def waterPlant():
-    #username = session['username']
-    username = "Nicole"
+    username = session['username']
     moistValue = wc.getPlants()
-    return render_template('waterPlant.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+    if session.get('logged_in') == True:
+        return render_template('waterPlant.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+    else:
+        return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/waterplant', methods=['GET', 'POST'])
 def waterButton():
@@ -73,7 +77,10 @@ def homepageloggedin():
     wc = WebsiteController()
     moistValue = wc.getPlants()
     username = session['username']
-    return render_template('indexWhenLoggedIn.html', moistValue = '{}'.format(moistValue), username = '{}'.format(username))
+    if session.get('logged_in') == True:
+        return render_template('indexWhenLoggedIn.html', moistValue = '{}'.format(moistValue), username = '{}'.format(username))
+    else:
+        return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/homepage')
 def homepage():
@@ -85,7 +92,10 @@ def homepage():
 def insertMoistValueSensitivityPage():    
     username = session['username']
     moistValue = wc.getPlants()
-    return render_template('insertmoistvaluesensitivity.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+    if session.get('logged_in') == True:
+        return render_template('insertmoistvaluesensitivity.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+    else:
+        return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/insertMoistValueSensitivity', methods=['GET', 'POST'])
 def insertMoistValueSensitivity():
