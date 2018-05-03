@@ -9,7 +9,7 @@ body {
 #header {
     /*background-color: rgb(170, 154, 132);*/
     width: 1344px;
-    height: 197px;
+    height: 237px;
     padding-top: 30px;
     display: block;
 }
@@ -34,7 +34,7 @@ h1 {
 #meny {
     /*background-color: rgb(255, 250, 240);*/
     width: 672px;
-    height: 62px;
+    height: 113px;
     margin-left: 672px;
 }
 
@@ -63,10 +63,36 @@ h1 {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+#button3 {
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    padding: 11px 10px 11px 10px;
+    margin: 0px 0px 0px 415px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#button4 {
+    position: absolute;
+    width: 170px;
+    height: 40px;
+    padding: 5.5px 10px 11px 10px;
+    margin: 56.5px 0px 0px 0px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 #content {
     /*background-color: rgb(219, 195, 163, 0.4);*/
     width: 1344px;
-    height: 482px;
+    height: 442px;
     display: block;
 }
 

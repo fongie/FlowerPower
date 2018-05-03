@@ -1,0 +1,27 @@
+{% extends "indexWhenLoggedIn.html" %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/insertMoistValueSensitivity.css') }}">
+{% endblock %}
+{% block content %}
+
+        <div id="ram">
+            <div id="pageLayout">
+                <form id="insertMoistValueSensitivity" action="" method="POST">
+                    <div class="rubrik">
+                        <h2>Välj fuktighetsvärde</h2>
+                    </div>
+                    <div id="instructions">
+                        Ställ in vid vilket fuktighetsvärde du ska få en notis om att blomman behöver vattnas. <br/>
+                        Notisen skickas via mail. <br/>
+                        Värdet som matas in måste vara mellan 0 och 1023, men borde rimligtvis ligga någonstans mellan 0 och 500?.
+                    </div>
+                    <div class="container">
+                        <input type="text" placeholder="Fuktighetsvärde" name="moistValueSensitivityNumber" required/>
+                        <button type="submit" name="moistValueSensitivityNumberOk" value="OK">OK</button>
+                    </div>
+                    <h2>{{ result2 }}</h2>
+                </form>
+            </div>
+        </div>
+
+{% endblock %}

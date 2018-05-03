@@ -1,0 +1,16 @@
+{% extends "indexWhenLoggedIn.html" %}
+{% block link %}
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/waterPlant.css') }}">
+{% endblock %}
+{% block content %}
+
+        <div id="ram">
+            <div id="button">
+                <form id="wateringButton" action="" method="POST">
+                    <button type="submit" name="wateringButton" value="Water">Vattna Blomma</button>
+                </form>
+            </div>
+            <h2>{{ result }}</h2>
+        </div>
+
+{% endblock %}

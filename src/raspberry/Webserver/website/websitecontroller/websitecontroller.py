@@ -1,14 +1,40 @@
 from raspberry.Webserver.externals.externalscontroller.externalscontroller import ExternalsController
+from raspberry.Webserver.website.websitemodel.useraccounthandler import UserAccountHandler
+
+ec = ExternalsController.getInstance()
 
 class WebsiteController:
     def __init__(self):
         pass
 
     def getPlants(self):
-        #testdata = ["123", "456", "789"]
-        #testd = f1.fuktvarde()
-        ec = ExternalsController.getInstance()
-        #ec = ExternalsController()
-        testd = ec.readPlantStatus(1)
-        return testd
-        #return 'Hej FlowerPower, nu är vi igång!'
+        try:
+            moistValue = ec.readPlantStatus(1)
+            
+        except: 
+            moistValue = 'Moist value could not be read.'
+            
+        return moistValue
+    
+    def login(self, uname, pwd):
+        uah = UserAccountHandler()
+        result = uah.login(uname, pwd)
+        return result
+
+    def setMinDryness(self, minDryness):
+        try:
+            result = ec.updateMinDryness(minDryness)
+            
+        except:
+            result = 'Minimum dryness value could not be set.'
+        
+        return result
+
+    def waterPlant(self):
+        try:
+            ec.waterPlant(1)
+            result = 'Plant watered!'
+            return result
+        except:
+            error = 'Could not water plant.'
+            return error
