@@ -71,13 +71,13 @@ def test_turnOffSprinkler():
         excntr.waterPlant(6)
         excntr.turnOffSprinkler(6)
         turnedOn = excntr.plants.get(6).tellstickHandler.isTurnedOn
-        noException = True
+        caughtException = False
     except RuntimeError:
-        noException = False
+        caughtException = True
 
 
     excntr.terminatePlant(6)
-    assert noException and turnedOn == False
+    assert caughtException or (turnedOn == False)
 
 def test_updateMinDryness():
     excntr = externalscontroller.ExternalsController.getInstance()

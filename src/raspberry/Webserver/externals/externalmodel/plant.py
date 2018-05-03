@@ -61,7 +61,7 @@ class Plant(threading.Thread):
     def updateMinDryness(self):
 
         #note: right now only sends notification ONCE and then never again if thread stays alive
-        if (0 <= self.lastMoistReading < self.drynessTrigger) and self.didNotSendNotificationYet:
+        if (self.lastMoistReading > self.drynessTrigger) and self.didNotSendNotificationYet:
             self.notificationSender.sendDrynessNotification(self.lastMoistReading)
             self.didNotSendNotificationYet = False
 

@@ -3,9 +3,6 @@ from raspberry.Webserver.website.websitecontroller.websitecontroller import Webs
 
 wc = WebsiteController()
 
-def test_getPlants():
-    assert wc.getPlants() >= 0
-    
 def test_login():
     try:
         uname = 'testuname'

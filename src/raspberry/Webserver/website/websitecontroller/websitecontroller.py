@@ -23,7 +23,8 @@ class WebsiteController:
 
     def setMinDryness(self, minDryness):
         try:
-            result = ec.updateMinDryness(minDryness)
+            ec.updateMinDryness(1, int(minDryness))
+            result = "Updated!"
             
         except:
             result = 'Minimum dryness value could not be set.'
