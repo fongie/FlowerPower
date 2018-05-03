@@ -9,7 +9,8 @@ class NotificationSender:
 
     #note: smtplib cannot send ÅÄÖ?
     '''
-    Instantiated with the current plantID and which email to send notifications to
+    Constructor. Parameters: plantID (int), current plants ID
+                            sendToEmail (str), email to send notification to
     '''
     def __init__(self, plantID, sendToEmail):
         self.username = "flowerpowerkth@gmail.com"
@@ -35,6 +36,9 @@ class NotificationSender:
         self._send_email(subj,body)
         return True
 
+    '''
+    Set a new email to send notifications to
+    '''
     def setEmail(self,email):
         self.to_addr = email
 
