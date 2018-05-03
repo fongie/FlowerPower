@@ -50,7 +50,7 @@ class Plant(threading.Thread):
         if self.lastMoistReading >= 0:
             return self.lastMoistReading
         else:
-            self.runSignal = False
+            #self.runSignal = False
             raise ValueError('Could not get an updated value from the Arduino moistsensor!')
 
     ''' Set below which value the low moistness notification is sent '''
