@@ -26,3 +26,12 @@ def test_setMinDryness():
         result = 'Could not set minimum dryness value.'
         
     assert result
+
+def test_waterPlant():
+    try:
+        result = wc.waterPlant()
+        
+    except:
+        result = 'Could not water plant.'
+        
+    assert result

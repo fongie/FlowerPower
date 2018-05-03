@@ -15,7 +15,7 @@
             <h1>Välkommen</h1>
             <h1>till</h1>
             <h1>FlowerPower</h1>
-            <h1 id="headerlast">{{ result }}</h1>
+            <h1 id="headerlast">{{ username }}</h1>
             <div id="meny">
                 <span id="button1">
                     <a href="{{ url_for('logOut') }}">Logga ut</a>
@@ -25,6 +25,9 @@
                 </span>
                 <span id="button3">
                         <a href="{{ url_for('insertMoistValueSensitivity') }}">Ange fuktkänslighetsvärde</a>
+                </span>
+                <span id="button4">
+                    <a href="{{ url_for('waterPlant') }}">Hantera Blomma</a>
                 </span>
             </div>
         </div>

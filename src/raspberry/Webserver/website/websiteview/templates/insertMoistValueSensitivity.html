@@ -6,9 +6,6 @@
 
         <div id="ram">
             <div id="pageLayout">
-                <div id="moistvalue">
-                    <span class="textspan">Blommans fuktvärde är: {{ testd }}</span>
-                </div>
                 <form id="insertMoistValueSensitivity" action="" method="POST">
                     <div class="rubrik">
                         <h2>Välj fuktighetsvärde</h2>
@@ -22,6 +19,7 @@
                         <input type="text" placeholder="Fuktighetsvärde" name="moistValueSensitivityNumber" required/>
                         <button type="submit" name="moistValueSensitivityNumberOk" value="OK">OK</button>
                     </div>
+                    <h2>{{ result2 }}</h2>
                 </form>
             </div>
         </div>

@@ -6,8 +6,11 @@
 
         <div id="ram">
             <div id="button">
-                <button type="submit" name="wateringButton" value="Water">Vattna Blomma</button>
+                <form id="wateringButton" action="" method="POST">
+                    <button type="submit" name="wateringButton" value="Water">Vattna Blomma</button>
+                </form>
             </div>
+            <h2>{{ result }}</h2>
         </div>
 
 {% endblock %}

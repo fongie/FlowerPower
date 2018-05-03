@@ -1,7 +1,7 @@
 from raspberry.Webserver.externals.externalscontroller.externalscontroller import ExternalsController
 from raspberry.Webserver.website.websitemodel.useraccounthandler import UserAccountHandler
 
-#ec = ExternalsController.getInstance()
+ec = ExternalsController.getInstance()
 
 class WebsiteController:
     def __init__(self):
@@ -29,3 +29,12 @@ class WebsiteController:
             result = 'Minimum dryness value could not be set.'
         
         return result
+
+    def waterPlant(self):
+        try:
+            ec.waterPlant(1)
+            result = 'Plant watered!'
+            return result
+        except:
+            error = 'Could not water plant.'
+            return error

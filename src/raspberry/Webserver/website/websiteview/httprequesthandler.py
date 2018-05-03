@@ -1,12 +1,14 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
+from flask import Flask, render_template, request, url_for, redirect, session
 from raspberry.Webserver.website.websitecontroller.websitecontroller import WebsiteController
 
 app = Flask(__name__)
+app.secret_key = 'super secret key'
 wc = WebsiteController()
 
 @app.route('/')
 def showHomePage():
-    return render_template('index.html')
+    moistValue = wc.getPlants()
+    return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 '''@app.route('/', methods=['GET', 'POST'])
 def buttonHandler():
@@ -26,7 +28,8 @@ def buttonHandler():
         
 @app.route('/login')
 def showLogin():
-    return render_template('login.html')
+    moistValue = wc.getPlants()
+    return render_template('login.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,17 +38,41 @@ def login():
             uname = request.form['username']
             pwd = request.form['password']
             result = wc.login(uname, pwd)
-            return render_template('indexWhenLoggedIn.html', result = '{}'.format(result))
+            if result == uname:
+                session['username'] = uname
+                username = session['username']
+            else:
+                username = result
+            
+            moistValue = wc.getPlants()
+            return render_template('indexWhenLoggedIn.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
 
 @app.route('/logOut')
 def logOut():
-    return render_template('index.html')
+    moistValue = wc.getPlants()
+    return render_template('index.html', moistValue = '{}'.format(moistValue))
+
+@app.route('/waterplant')
+def waterPlant():
+    username = session['username']
+    moistValue = wc.getPlants()
+    return render_template('waterPlant.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
+
+@app.route('/waterplant', methods=['GET', 'POST'])
+def waterButton():
+    if request.method == 'POST':
+        if "wateringButton" in request.form:
+            result = wc.waterPlant()
+            username = session['username']
+            moistValue = wc.getPlants()
+            return render_template('waterPlant.html', result = '{}'.format(result), username = '{}'.format(username), moistValue = '{}'.format(moistValue))
     
 @app.route('/homepageloggedin')
 def homepageloggedin():
     wc = WebsiteController()
     moistValue = wc.getPlants()
-    return render_template('indexWhenLoggedIn.html', moistValue = '{}'.format(moistValue))
+    username = session['username']
+    return render_template('indexWhenLoggedIn.html', moistValue = '{}'.format(moistValue), username = '{}'.format(username))
 
 @app.route('/homepage')
 def homepage():
@@ -54,8 +81,10 @@ def homepage():
     return render_template('index.html', moistValue = '{}'.format(moistValue))
 
 @app.route('/insertMoistValueSensitivity')
-def insertMoistValueSensitivityPage():
-    return render_template('insertmoistvaluesensitivity.html')
+def insertMoistValueSensitivityPage():    
+    username = session['username']
+    moistValue = wc.getPlants()
+    return render_template('insertmoistvaluesensitivity.html', username = '{}'.format(username), moistValue = '{}'.format(moistValue))
 
 @app.route('/insertMoistValueSensitivity', methods=['GET', 'POST'])
 def insertMoistValueSensitivity():
@@ -63,6 +92,8 @@ def insertMoistValueSensitivity():
         if "moistValueSensitivityNumberOk" in request.form:
             minDryness = request.form['moistValueSensitivityNumber']
             result2 = wc.setMinDryness(minDryness)
-            return render_template('insertmoistvaluesensitivity.html', result2 = '{}'.format(result2))
+            username = session['username']
+            moistValue = wc.getPlants()
+            return render_template('insertmoistvaluesensitivity.html', result2 = '{}'.format(result2), username = '{}'.format(username), moistValue = '{}'.format(moistValue))
 
 # export FLASK_APP=httprequesthandler.py
