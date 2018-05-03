@@ -21,7 +21,7 @@ class Plant(threading.Thread):
 
         self.noContactWithArduinoCounter = 0
         self.lastMoistReading = -1
-        self.drynessTrigger = 1000
+        self.drynessTrigger = 500
         self.plantID = args[0]
 
         self.didNotSendNotificationYet = True
