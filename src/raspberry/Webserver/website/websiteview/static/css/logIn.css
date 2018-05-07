@@ -8,7 +8,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     width: 504px;
     height: 163px;
-    margin: 31px 65.5px 31px 737.5px;
+    margin: 10px 65.5px 10px 737.5px;
     border-radius: 8px;
 }
 
@@ -21,22 +21,6 @@ h2 {
     font-size: 22px;
 }
 
-/*
-#description{
-    font-size: 18px;
-    width: 168px;
-    height: 92px;
-    margin: 5px 10px 5px 10px;
-}
-
-#data{
-    width: 302px;
-    height: 92px;
-    margin: 5px 10px 5px 0px;
-    border-radius: 8px;
-}
-*/
-
 label{
     font-size: 18px;
     width: 168px;
@@ -44,8 +28,9 @@ label{
     margin: 5px 10px 5px 10px;
 }
 
-label.b{
+b{
     width: 168px;
+    font-weight: normal;
 }
 
 input{

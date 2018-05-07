@@ -66,16 +66,23 @@ h1 {
 #content {
     /*background-color: rgb(219, 195, 163, 0.4);*/
     width: 1344px;
-    height: 482px;
+    height: 477px;
+    margin-top: 5px;
     display: block;
+}
+
+#moistvalue {
+    background-color: rgba(255, 255, 255, 0.5);
+    font-size: 22px;
+    width: 615px;
+    height: auto;
+    margin: 0px 0px 0px 672px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    align-self: center;
 }
 
 .textspan {
     color: rgb(0, 0, 0);
-}
-
-#moistvalue {
-    font-size: 20px;
-    margin: 10px 490px 10px 490px;
-    align-self: center;
+    padding: 5px 10px 5px 10px;
 }

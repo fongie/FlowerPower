@@ -1,7 +1,7 @@
 #ram {
     font-family: "Comic sans MS";
     width: 1344px;
-    height: 482px;
+    height: 370px;
 }
 
 #button {
@@ -9,7 +9,7 @@
     font-size: 22px;
     width: 115px;
     height: auto;
-    margin: 0px 250px 0px 922px;
+    margin: 10px 250px 0px 922px;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
 }
