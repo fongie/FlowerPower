@@ -20,6 +20,9 @@
 h2 {
     font-size: 22px;
 }
+table{
+    border-width: 0;
+}
 
 label{
     font-size: 18px;

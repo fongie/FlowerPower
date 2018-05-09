@@ -21,8 +21,13 @@ button{
     height: 30px;
 }
 
-h2{
-    font-size: 20px;
+h2 {
     background-color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    width: 615px;
+    height: 30px;
+    margin: 5px 0px 0px 672px;
+    padding: 5px 10px 5px 10px;
     border-radius: 5px;
+    align-self: center;
 }
