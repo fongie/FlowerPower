@@ -15,4 +15,5 @@ Plug in the usb-cable to a power supply.
 On the raspberry:
 Change the IP at line 10 in projectgaming/src/raspberry/Webserver/externals/moistcontrol/arduinoconnection.py to the one retrieved from serialmonitor.
 Change the email and password at line 16 and 17 in projectgaming/src/raspberry/Webserver/externals/notification/notificationsender.py to a valid email and password. 
+
 Run start_server.bash and you are good to go :)
