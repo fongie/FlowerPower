@@ -12,7 +12,9 @@ Open up the serial monitor (icon in the top right corner) to see that it is func
 You can now save the file and close the arduino IDE.
 Plug in the usb-cable to a power supply.
 
-On the raspberry:
+On the Raspberry:
+Install the telldus-core package on the system and configure it to turn on/off your device as device number "1".
+Install the Python modules listed in the Pipfile, either globally on the system or in a virtual environment of your choice.
 Change the IP at line 10 in projectgaming/src/raspberry/Webserver/externals/moistcontrol/arduinoconnection.py to the one retrieved from serialmonitor.
 Change the email and password at line 16 and 17 in projectgaming/src/raspberry/Webserver/externals/notification/notificationsender.py to a valid email and password. 
 
