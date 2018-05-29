@@ -18,4 +18,10 @@ Install the Python modules listed in the Pipfile, either globally on the system 
 Change the IP at line 10 in projectgaming/src/raspberry/Webserver/externals/moistcontrol/arduinoconnection.py to the one retrieved from serialmonitor.
 Change the email and password at line 16 and 17 in projectgaming/src/raspberry/Webserver/externals/notification/notificationsender.py to a valid email and password. 
 
-Run start_server.bash and you are good to go :)
+# To run:
+* SSH into your Raspberry Pi with ssh pi@RASPBERRYIP , password is "flowerpower", from a computer connected to the same wifi network as the Raspberry.
+* Type the command: cd projectgaming
+* Type the command: pipenv shell
+* Type the command: ./start_server.bash
+
+You can now access the website on the same network as http://RASPBERRYPIIP:5000
