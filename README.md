@@ -21,13 +21,15 @@ Install the Python modules listed in the Pipfile, either globally on the system 
 Change the IP at line 10 in projectgaming/src/raspberry/Webserver/externals/moistcontrol/arduinoconnection.py to the one from the Arduino retrieved from serialmonitor above.
 Change the email and password at line 16 and 17 in projectgaming/src/raspberry/Webserver/externals/notification/notificationsender.py to a valid email and password. 
 
-## To run:
+## To run the system:
 * SSH into your Raspberry Pi with ssh pi@RASPBERRYIP , password is "flowerpower", from a computer connected to the same wifi network as the Raspberry.
 * Type the command: cd projectgaming
-* (*if using Pipenv*) Type the command: pipenv shell 
+* Type the command: pipenv shell 
 * Type the command: ./start_server.bash
 
 You can now access the website on the same network on http://RASPBERRYPIIP:5000
+
+If you are setting up your own FlowerPower system, you need to use your own Raspberry login details to ssh into the Raspberry. This guide is used for the demo system that the group turned in at the end of the course. If you installed Python modules globally, you also do not need to run the pipenv command above.
 
 ## Further development
 To further develop the system you can **fork** the repository on GitHub. You will find detailed documentation on the different subsystems in the [Technical Documentation](https://github.com/fongie/projectgaming/wiki/Teknisk-Dokumentation) part of the wiki.
